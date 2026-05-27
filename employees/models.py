@@ -8,5 +8,10 @@ class Employee(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата и время последнего обновления")
 
+    class Meta:
+        verbose_name = "Сотрудник"
+        verbose_name_plural = "Сотрудники"
+        ordering = ["-created_at"]
+
     def __str__(self):
         return self.full_name

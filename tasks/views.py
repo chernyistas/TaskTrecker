@@ -7,12 +7,12 @@ from rest_framework.response import Response
 from employees.models import Employee
 
 from .models import Task
-from .serializers import TaskSerializers
+from .serializers import TaskSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
-    serializer_class = TaskSerializers
+    queryset = Task.objects.all().order_by("-created_at")
+    serializer_class = TaskSerializer
     permission_classes = [AllowAny]
 
     def _find_candidates_for_task(self, task):
