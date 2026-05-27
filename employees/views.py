@@ -9,7 +9,7 @@ from .serializers import EmployeeSerializer
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all()
+    queryset = Employee.objects.all().order_by("id")
     serializer_class = EmployeeSerializer
     permission_classes = [AllowAny]
 
