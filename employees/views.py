@@ -1,7 +1,7 @@
 from django.db.models import Count, Q
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .models import Employee
@@ -11,7 +11,7 @@ from .serializers import EmployeeSerializer
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     @action(detail=False, methods=["get"], url_path="busy")
     def busy_employees(self, request):

@@ -1,7 +1,7 @@
 from django.db.models import Count, Q
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from employees.models import Employee
@@ -13,7 +13,7 @@ from .serializers import TaskSerializers
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializers
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     def _find_candidates_for_task(self, task):
         least_busy_employee = (
